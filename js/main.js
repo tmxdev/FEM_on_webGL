@@ -18,12 +18,17 @@ function init() {
   var camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
   camera.position.set(0, 0, 50);
 
+  var trackball = new THREE.TrackballControls(camera);
+  trackball.rotateSpeed = 5.0;
+  trackball.zoomSpeed = 0.5;
+  trackball.panSpeed = 2.0;
+
   // 平行光源
-  var light = new THREE.DirectionalLight(0xFFFFFF);
-  light.position.set(1, 1, 1);
-  scene.add(light);
+  var directionallight = new THREE.DirectionalLight(0xFFFFFF);
+  directionallight.position.set(1, 1, 1);
+  scene.add(directionallight);
   // 環境光
-  const ambientLight = new THREE.AmbientLight(0x333333);
+  const ambientLight = new THREE.AmbientLight(0x444444);
   scene.add(ambientLight);
 
   // モデル
@@ -34,11 +39,15 @@ function init() {
     scene.add(mesh);
   });
 
+  var grid = new THREE.GridHelper(100, 10, 0x888888, 0x888888);
+  scene.add(grid);
+
   render();
 
   function render() {
     // レンダリング
     renderer.render(scene, camera);
     requestAnimationFrame(render);
+    trackball.update();
   }
 }
