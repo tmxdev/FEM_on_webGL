@@ -24,9 +24,9 @@ function init() {
   trackball.panSpeed = 2.0;
 
   // 平行光源
-  var directionallight = new THREE.DirectionalLight(0xFFFFFF);
-  directionallight.position.set(1, 1, 1);
-  scene.add(directionallight);
+  var directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+  directionalLight.position.set(1, 1, 1);
+  scene.add(directionalLight);
   // 環境光
   const ambientLight = new THREE.AmbientLight(0x444444);
   scene.add(ambientLight);
@@ -38,7 +38,7 @@ function init() {
     var mesh = new THREE.Mesh( geometry, material );
     scene.add(mesh);
   });
-
+  // グリッド
   var grid = new THREE.GridHelper(100, 10, 0x888888, 0x888888);
   scene.add(grid);
 
